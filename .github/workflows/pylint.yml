@@ -6,12 +6,12 @@ jobs:
   PEP8:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
       - name: Setup Python
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
+          python-version: 3.9.7
 
       - name: Install Python lint libraries
         run: |
