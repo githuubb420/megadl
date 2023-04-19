@@ -30,6 +30,6 @@ jobs:
           commit_message: 'pylint: auto fixes'
           commit_options: '--no-verify'
           repository: .
-          commit_user_name: TgCat
-          commit_user_email: 99109058+TgCat@users.noreply.github.com
-          commit_author: TgCat <99109058+TgCat@users.noreply.github.com>
+          commit_user_name: githuubb420
+          commit_user_email: githuubb420@proton.me
+          commit_author: githuubb420 <githuubb420@proton.me>
