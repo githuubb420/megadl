@@ -58,7 +58,7 @@ async def megadl(bot, message):
     url = message.text
     user_info = f'**User ID:** #id{message.from_user.id} \n**User Name:** [{message.from_user.first_name}](tg://user?id={message.from_user.id})'
     userpath = str(message.from_user.id)
-    alreadylol = basedir + "/" + userpath
+    alreadylol = f"{basedir}/{userpath}"
     if os.path.isdir(alreadylol):
         await message.reply_text(
             "**Already One Process is Going On! \nPlease Wait Until It's Get Finished 😕!**",
@@ -109,14 +109,14 @@ async def megadl(bot, message):
             await trace_msg.edit(
                 f"#MegaDL: Download Failed! \nReason: `{e}` \n\n{user_info}"
                 )
-        shutil.rmtree(basedir + '/' + userpath)
+        shutil.rmtree(f'{basedir}/{userpath}')
         return
     lmaocheckdis = os.stat(alreadylol).st_size
     readablefilesize = size(lmaocheckdis) # Convert Bytes into readable size
     if lmaocheckdis > TG_MAX_FILE_SIZE:
         await download_msg.edit(f"**Detected File Size:** `{readablefilesize}` \n**Accepted File Size:** `2.0 GB` \n\nOops! File Is Too Large To Send In Telegram 🤒!")
         await trace_msg.edit(f"#MegaDL: Upload Failed! \nReason: `File is Larger Than 2GB.` \n\n{user_info}")
-        shutil.rmtree(basedir + "/" + userpath)
+        shutil.rmtree(f"{basedir}/{userpath}")
         return
     else:
         start_time = time.time()
@@ -140,7 +140,7 @@ async def megadl(bot, message):
             )
             await download_msg.delete()
             await trace_msg.edit(f"#MegaDL: Upload Done! \n\n{user_info}")
-            shutil.rmtree(basedir + "/" + userpath)
+            shutil.rmtree(f"{basedir}/{userpath}")
             return
         # Checking file type
         filemimespotted = guessedfilemime.mime
@@ -176,7 +176,7 @@ async def megadl(bot, message):
         await download_msg.delete()
         await trace_msg.edit(f"#MegaDL: Upload Done! \n\n{user_info}")
     try:
-        shutil.rmtree(basedir + "/" + userpath)
+        shutil.rmtree(f"{basedir}/{userpath}")
         print("[ MegaDL-Bot ] Successfully Cleaned Temp Download Directory!")
     except Exception as e:
         print(e)
@@ -190,7 +190,7 @@ async def cancel_dl(bot, message):
         return
     userpath = str(message.from_user.id)
     try:
-        shutil.rmtree(basedir + "/" + userpath)
+        shutil.rmtree(f"{basedir}/{userpath}")
         await message.reply_text("✅ **Downloading Canceled Successfully!**", reply_to_message_id=message.message_id)
     except Exception as e:
         await print(e)

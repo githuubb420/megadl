@@ -21,13 +21,16 @@ async def help(bot, message, cb=False):
         if fsub == 400:
             return
     me = await bot.get_me()
-    button = [[
-        InlineKeyboardButton(f'🏠 HOME', callback_data='back'),
-        InlineKeyboardButton(f'ABOUT 👨', callback_data='about')
-    ], [
-        InlineKeyboardButton(f'📦 SOURCE', url='https://github.com/'),
-        InlineKeyboardButton(f'CLOSE 🔐', callback_data='close')
-    ]]
+    button = [
+        [
+            InlineKeyboardButton('🏠 HOME', callback_data='back'),
+            InlineKeyboardButton('ABOUT 👨', callback_data='about'),
+        ],
+        [
+            InlineKeyboardButton('📦 SOURCE', url='https://github.com/'),
+            InlineKeyboardButton('CLOSE 🔐', callback_data='close'),
+        ],
+    ]
     reply_markup = InlineKeyboardMarkup(button)
     if cb:
         await message.message.edit(
@@ -53,13 +56,16 @@ async def start(bot, message, cb=False):
     me = await bot.get_me()
     owner = await bot.get_users(Config.OWNER_ID)
     owner_username = owner.username if owner.username else 'AsmSafone'
-    button = [[
-        InlineKeyboardButton(f'💡 HELP', callback_data='help'),
-        InlineKeyboardButton(f'ABOUT 👨', callback_data="about")
-    ], [
-        InlineKeyboardButton(f'📦 SOURCE', url='https://github.com/'),
-        InlineKeyboardButton(f'CLOSE 🔐', callback_data="close")
-    ]]
+    button = [
+        [
+            InlineKeyboardButton('💡 HELP', callback_data='help'),
+            InlineKeyboardButton('ABOUT 👨', callback_data="about"),
+        ],
+        [
+            InlineKeyboardButton('📦 SOURCE', url='https://github.com/'),
+            InlineKeyboardButton('CLOSE 🔐', callback_data="close"),
+        ],
+    ]
     reply_markup = InlineKeyboardMarkup(button)
     if cb:
         await message.message.edit(
@@ -85,13 +91,16 @@ async def about(bot, message, cb=False):
         if fsub == 400:
             return
     me = await bot.get_me()
-    button = [[
-        InlineKeyboardButton(f'🏠 HOME', callback_data='back'),
-        InlineKeyboardButton(f'HELP 💡', callback_data='help')
-    ], [
-        InlineKeyboardButton(f'📦 SOURCE', url='https://github.com/'),
-        InlineKeyboardButton(f'CLOSE 🔐', callback_data="close")
-    ]]
+    button = [
+        [
+            InlineKeyboardButton('🏠 HOME', callback_data='back'),
+            InlineKeyboardButton('HELP 💡', callback_data='help'),
+        ],
+        [
+            InlineKeyboardButton('📦 SOURCE', url='https://github.com/'),
+            InlineKeyboardButton('CLOSE 🔐', callback_data="close"),
+        ],
+    ]
     reply_markup = InlineKeyboardMarkup(button)
     if cb:
         await message.message.edit(
@@ -184,7 +193,7 @@ async def cancel_cb(bot, message):
             show_alert=True
         )
         await asyncio.sleep(5)
-        shutil.rmtree(basedir + "/" + userpath)
+        shutil.rmtree(f"{basedir}/{userpath}")
         await message.message.delete()
         await message.message.reply_text("**Process Cancelled By User 😡!**", reply_to_message_id=message.message_id)
     except Exception as e:
